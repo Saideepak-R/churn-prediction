@@ -1,4 +1,2 @@
-matplotlib
-seaborn
 pycaret==1.0.0
 streamlit
