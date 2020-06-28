@@ -1,7 +1,7 @@
 from pycaret.classification import load_model, predict_model
 import streamlit as st
-#import matplotlib.pyplot as plt
-#import seaborn as sns
+import matplotlib.pyplot as plt
+import seaborn as sns
 import numpy as np
 import pandas as pd
 
@@ -21,7 +21,13 @@ def run():
     if file_upload is not None:
         data = pd.read_csv(file_upload)
         predictions = predict_model(estimator=model,data=data)
-        st.write(predictions)
+        predictions.Label[predictions.Label  ==  0 ] = 'Non churn'
+        predictions.Label[predictions.Label  ==  1 ] = 'Churn'
+        g = sns.countplot(x = 'Label' , data = predictions )
+        plt.title('Count of Churners and Non churners')
+        for p in g.patches:
+            g.annotate(format(p.get_height() ), (p.get_x() + p.get_width() / 2., p.get_height()), ha = 'center', va = 'center', xytext = (0, 5), textcoords = 'offset points')
+    st.pyplot()
 
 if __name__ == '__main__':
-    run()
+    run()	
