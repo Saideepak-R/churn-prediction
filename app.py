@@ -1,5 +1,4 @@
 from pycaret.classification import load_model, predict_model
-from PIL import Image
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -11,6 +10,7 @@ image = Image.open('logo.png')
 image_digital_trust = Image.open('digital_trust.jpg')
 
 def run():
+	from PIL import Image
 	st.image(image , use_column_width = False)
 #st.sidebar.image(image  , use_column_width = False)
     
