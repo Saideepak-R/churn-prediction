@@ -10,25 +10,18 @@ model = load_model('xgboost_for_deployment')
 
 
 def run():
-	from PIL import Image
-	image = Image.open('logo.png')
-	image_digital_trust = Image.open('digital_trust.jpg')
-	st.image(image , use_column_width = False)
-	st.title('Telecom Churn Prediction App')
+    from PIL import Image
+    image = Image.open('logo.png')
+    image_digital_trust = Image.open('digital_trust.jpg')
+    st.image(image , use_column_width = False)
+    st.title('Telecom Churn Prediction App')
 
-	file_upload = st.file_uploader('Upload csv file for predictions', type = ['csv'])
-    
-	if file_upload is not None:
-		data = pd.read_csv(file_upload)
-		predictions = predict_model(estimator = model , data = data)
-		st.write(predictions)
-		#predictions.Label[predictions.Label  ==  0 ] = 'Non churn'
-		#predictions.Label[predictions.Label  ==  1 ] = 'Churn'
-		#g = sns.countplot(x = 'Label' , data = predictions )
-		#plt.title('Count of Churners and Non churners')
-		#for p in g.patches:
-			#g.annotate(format(p.get_height() ), (p.get_x() + p.get_width() / 2., p.get_height()), ha = 'center', va = 'center', xytext = (0, 5), textcoords = 'offset points')
-	#st.pyplot()
+    file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
+
+    if file_upload is not None:
+        data = pd.read_csv(file_upload)
+        predictions = predict_model(estimator=model,data=data)
+        st.write(predictions)
 
 if __name__ == '__main__':
-    run() 
+    run()
