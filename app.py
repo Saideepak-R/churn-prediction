@@ -21,7 +21,7 @@ def run():
     if file_upload is not None:
         data = pd.read_csv(file_upload)
         data1 = pd.read_csv('churn.csv')
-		data_new = pd.merge(data , data1 , how = 'inner' , on = 'phone number')
+	data_new = pd.merge(data , data1 , how = 'inner' , on = 'phone number')
         predictions = predict_model(estimator=model,data=data_new)
         predictions.Label[predictions.Label  ==  0 ] = 'Non churn'
         predictions.Label[predictions.Label  ==  1 ] = 'Churn'
